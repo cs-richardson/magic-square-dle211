@@ -6,7 +6,6 @@ Edits made by Justin
 Information provided by Wikipedia
 """
 
-
 # This procedure prompts the user for n^2 inputs to populate a
 # 2D square array which has alreay been declared
 # precondition:  sqArr has been declared with a size of nxn
@@ -89,7 +88,7 @@ def checkSquare(size, square):
        return False
 
 # Main program
-s = int(input("Enter square side length:  "))
+s = int(input("Enter square side length: "))
 sq = [[0 for x in range(s)] for y in range(s)]
 fillSquare(s, sq)
 
