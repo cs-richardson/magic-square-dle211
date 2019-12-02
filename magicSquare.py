@@ -28,8 +28,10 @@ def checkRow(n, sqArr, mNum):
         sum = 0
         for c in range(len(sqArr[r])):
             sum += sqArr[r][c]
+
         if sum != mNum:
             return False
+
     return True
 
 # This procedure will return true if every column of sqArr has a sum of mNum
@@ -38,8 +40,10 @@ def checkCol(n, sqArr, mNum):
         sum = 0
         for c in range(len(sqArr[r])):
             sum += sqArr[c][r]
+
         if sum != mNum:
             return False
+
     return True
 
 # This procedure will return true if the main diagonal has a sum of mNum
@@ -47,6 +51,7 @@ def checkDiag1(n, sqArr, mNum):
     sum = 0
     for i in range(len(sqArr)):
         sum += sqArr[i][i]
+
     if sum == mNum:
         return True
     else:
@@ -57,6 +62,7 @@ def checkDiag2(n, sqArr, mNum):
     sum = 0
     for i in range(len(sqArr)):
         sum += sqArr[i][(len(sqArr) - 1) - i]
+
     if sum == mNum:
         return True
     else:
@@ -64,12 +70,15 @@ def checkDiag2(n, sqArr, mNum):
 
 # This procedure will return true if every element of sqArr is unique
 def checkUnique(n, sqArr):
-    for r1 in range(len(sqArr)):
-        for c1 in range(len(sqArr[r1])):
-            for r2 in range(len(sqArr)):
-                for c2 in range(1, len(sqArr[r2])):
-                    if sqArr[r1][c1] == sqArr[r2][c1 - c2]:
-                        return False
+    expandedSqArr = []
+    for r in range(len(sqArr)):
+        for c in range(len(sqArr[r])):
+            expandedSqArr.append(sqArr[r][c])
+
+    for i in range(1, (3 ** 2) + 1):
+        if i not in expandedSqArr:
+            return False
+
     return True
 
 # This procedure will return true if all the prodecures above return true
@@ -77,12 +86,14 @@ def checkSquare(size, square):
     """
     Returns True if inputed square is magic, and False if not.
     """
-    magicNum = size * (size**2 + 1) / 2
-    if(checkRow(size, square, magicNum) and  \
-       checkCol(size, square, magicNum) and  \
-       checkDiag1(size, square, magicNum) and  \
-       checkDiag2(size, square, magicNum) and   \
-       checkUnique(size, square)):
+    magicNum = size * (size ** 2 + 1) / 2
+    if (
+        checkRow(size, square, magicNum) and  \
+        checkCol(size, square, magicNum) and  \
+        checkDiag1(size, square, magicNum) and  \
+        checkDiag2(size, square, magicNum) and \
+        checkUnique(size, square)
+       ):
        return True
     else:
        return False
